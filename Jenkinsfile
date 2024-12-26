@@ -2,7 +2,7 @@
 pipeline {
   agent { label 'build' }
    environment { 
-        registry = "adamtravis/democicd" 
+        registry = "msrdevops/wezva" 
         registryCredential = 'dockerhub' 
    }
 
@@ -79,7 +79,7 @@ pipeline {
    stage('Stage VIII: Smoke Test ') {
       steps { 
         echo "Smoke Test the Image"
-        sh "docker run -d --name smokerun -p 8080:8080 adamtravis/democicd"
+        sh "docker run -d --name smokerun -p 4000:8080 msrdevops/wezva"
         sh "sleep 90; ./check.sh"
         sh "docker rm --force smokerun"
         }
